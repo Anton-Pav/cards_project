@@ -1,0 +1,70 @@
+.profileBlock {
+    position: relative;
+    width: 1008px;
+    height: 636px;
+    left: 136px;
+    top: 84px;
+
+    background: #FEFEFF;
+    border-radius: 8px;
+}
+
+.profileInfo {
+        position: absolute;
+        width: 243px;
+        height: 636px;
+
+
+        background: #ececf9;
+}
+
+.profile {
+    position: absolute;
+    width: 243px;
+    height: 216px;
+
+    background: #D9D9F1;
+}
+
+.numCards {
+
+}
+
+.packList {
+    position: absolute;
+    width: 765px;
+    height: 636px;
+    right: 0;
+    background: #FEFEFF;
+    border-radius: 8px;
+}
+
+.packList h2 {
+    margin-top: 35px;
+    position: absolute;
+    left: 5%;
+}
+
+.packList input {
+    position: absolute;
+    left: 5%;
+    right: 5%;
+    top: 14%;
+    bottom: 81.48%;
+
+    background: #ECECF9;
+    opacity: 0.5;
+    border: 1px solid #635D80;
+    box-sizing: border-box;
+    border-radius: 2px;
+}
+
+.cards {
+    position: absolute;
+    bottom: 5%;
+    top: 24%;
+    left: 5%;
+    right: 5%;
+    background-color: #ececf9;
+    border-radius: 3px;
+}
