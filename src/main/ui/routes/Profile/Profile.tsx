@@ -1,18 +1,21 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import s from './Profile.module.css'
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootType} from "../../../bll/store";
-import {isAuthTC} from "../../../bll/loginReducer";
+import {isAuthTC, logOutTC} from "../../../bll/loginReducer";
 import {Navigate, useNavigate} from "react-router-dom";
+
 const Profile = () => {
 
     const isLoggedIn = useSelector<AppRootType, boolean>(state => state.login.isLoggedIn)
-    const dispatch = useDispatch()
+    const nameUser = useSelector<AppRootType, string | null>(state => state.login.name)
     const navigate = useNavigate()
-    useEffect(()=> {
+    const dispatch = useDispatch()
+    useEffect(() => {
         dispatch(isAuthTC())
     }, [])
-console.log(isLoggedIn)
+
+
 
     if (!isLoggedIn) {
         return <Navigate to={'/login'}/>
@@ -20,9 +23,11 @@ console.log(isLoggedIn)
 
     return (
         <div className={s.profileBlock}>
+            <button onClick={() => dispatch(logOutTC())}>Log Out</button>
             <div className={s.profileInfo}>
                 <div className={s.profile}>
-
+                    <button className={s.editProfile} onClick={()=> navigate('/edit')}
+                    >Edit Profile</button>
                 </div>
                 <div className={s.numCards}>
 
@@ -32,7 +37,7 @@ console.log(isLoggedIn)
                 <h2>My packs list</h2>
                 <input/>
                 <div className={s.cards}>
-                    <div className={s.header}> </div>
+                    <div className={s.header}></div>
                 </div>
             </div>
         </div>

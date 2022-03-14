@@ -1,4 +1,4 @@
-import {authMeAPI, loginAPI, LoginPostType} from "../dal/loginAPI";
+import {authMeAPI, loginAPI, LoginPostType, UpdateUserType} from "../dal/loginAPI";
 import {Dispatch} from "redux";
 import {setAppErrorAC} from "./appReducer";
 
@@ -16,6 +16,7 @@ const initialState: InitialStateType = {
 }
 
 export const loginReducer = (store = initialState, action: ActionType): InitialStateType => {
+
     switch (action.type) {
         case "SET-LOGIN": {
             return {...store, ...action.payload}
@@ -23,8 +24,15 @@ export const loginReducer = (store = initialState, action: ActionType): InitialS
         case "login/SET-IS-LOGGED-IN": {
             return {...store, isLoggedIn: action.value}
         }
-        case "IS-AUTH": {
-            return {...store, isLoggedIn: action.isLoggedIn}
+        case "USER-UPDATE": {
+            if (store.name !== action.payload.name && store.avatar !== action.payload.avatar) {
+                return {...store, name: action.payload.name, avatar: action.payload.avatar}
+            } else if (store.name !== action.payload.name) {
+                return {...store, name: action.payload.name}
+            } else if (store.avatar !== action.payload.avatar) {
+                return {...store, avatar: action.payload.avatar}
+            }
+            return store
         }
 
         default:
@@ -46,7 +54,13 @@ export const loginAC = (name: string, avatar: string | undefined) => {
         }
     } as const
 }
-export const isAuthAC = (isLoggedIn: boolean) => ({type: 'IS-AUTH', isLoggedIn} as const)
+// export const isAuthAC = (isLoggedIn: boolean) => ({type: 'IS-AUTH', isLoggedIn} as const)
+
+const updateUserAC = (name: string, avatar: string | undefined) => ({
+    type: "USER-UPDATE", payload: {
+        name, avatar
+    }
+} as const)
 
 export const loginTC = (data: LoginPostType) => (dispatch: Dispatch) => {
     loginAPI.login(data).then(res => {
@@ -62,7 +76,7 @@ export const loginTC = (data: LoginPostType) => (dispatch: Dispatch) => {
 }
 export const isAuthTC = () => (dispatch: Dispatch) => {
     authMeAPI.me().then(res => {
-        dispatch(isAuthAC(true))
+        dispatch(setIsLoggedInAC(true))
     })
         .catch((e) => {
             const error = e.response ? e.response.data.error : (e.message + ', more details in the console')
@@ -70,7 +84,18 @@ export const isAuthTC = () => (dispatch: Dispatch) => {
             console.log('Error: ', {...e})
         })
 }
-type isAuthACType = ReturnType<typeof isAuthAC>
+
+export const logOutTC = () => (dispatch: Dispatch) => {
+    authMeAPI.logOut().then(res => {
+        dispatch(setIsLoggedInAC(false))
+    })
+}
+
+export const updateUserTC = (data: UpdateUserType) => (dispatch: Dispatch) => {
+    authMeAPI.updateUser(data).then(data => dispatch(updateUserAC(data.name, data.avatar)))
+}
+// type isAuthACType = ReturnType<typeof isAuthAC>
 type setIsLoggedInACType = ReturnType<typeof setIsLoggedInAC>
 type LoginACType = ReturnType<typeof loginAC>
-type ActionType = LoginACType | setIsLoggedInACType | isAuthACType
+type UpdateUserACType = ReturnType<typeof updateUserAC>
+type ActionType = LoginACType | setIsLoggedInACType | UpdateUserACType

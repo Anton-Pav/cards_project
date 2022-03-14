@@ -5,7 +5,7 @@ import {LoginPostType} from "../../../dal/loginAPI";
 import {useDispatch, useSelector} from "react-redux";
 import {loginTC} from "../../../bll/loginReducer";
 import {AppRootType} from "../../../bll/store";
-import {Navigate} from "react-router-dom";
+import {Navigate, useNavigate} from "react-router-dom";
 
 const Login = () => {
 
@@ -14,6 +14,7 @@ const Login = () => {
     const error = useSelector<AppRootType, string | null>(state => state.app.error)
     const isLoggedIn = useSelector<AppRootType, boolean>(state => state.login.isLoggedIn)
     console.log(error)
+    console.log(isLoggedIn)
     const formik = useFormik({
         initialValues: {
             email: '',
@@ -43,6 +44,7 @@ const Login = () => {
     // const login = () => {
     //     dispatch(loginTC())
     // }
+    const navigate = useNavigate()
     if (isLoggedIn) {
         return  <Navigate to={'/profile'}/>
     }
@@ -67,7 +69,7 @@ const Login = () => {
                           onChange={formik.handleChange}
                           value={formik.values.password}/>
                    {formik.touched.password && formik.errors.password && <div style = {{color: 'red'}}>{formik.errors.password}</div>}
-                   <a className={s.forgotPassword} href={'#'}>Forgot Password</a>
+                   <a className={s.forgotPassword} href={'/recovery-password'}>Forgot Password</a>
                    <button className={s.buttonLogin} type={'submit'} >Login</button>
 
                </form>

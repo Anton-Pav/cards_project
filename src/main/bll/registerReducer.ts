@@ -1,12 +1,6 @@
+type InitialStateType = {}
 
-
-type InitialStateType = {
-
-}
-
-const initialState = {
-
-}
+const initialState = {}
 
 export const registerReducer = (store = initialState, action: ActionType): InitialStateType => {
     switch (action.type) {
