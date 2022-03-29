@@ -22,6 +22,7 @@ export const loginReducer = (store = initialState, action: ActionType): InitialS
             return {...store, ...action.payload}
         }
         case "login/SET-IS-LOGGED-IN": {
+
             return {...store, isLoggedIn: action.value}
         }
         case "USER-UPDATE": {

@@ -1,0 +1,26 @@
+.packsBlock {
+    position: absolute;
+    width: 1008px;
+    height: 636px;
+    margin: 50px auto;
+    left: 0;
+    right: 0;
+    background: #FEFEFF;
+    border-radius: 8px;
+
+    display: flex;
+
+}
+
+.packsMain {
+    width: 20%;
+    background: #ECECF9;
+}
+.packs {
+
+    width: 80%;
+    padding: 20px;
+}
+.addPack {
+
+}

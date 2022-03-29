@@ -11,9 +11,6 @@ const Profile = () => {
     const nameUser = useSelector<AppRootType, string | null>(state => state.login.name)
     const navigate = useNavigate()
     const dispatch = useDispatch()
-    useEffect(() => {
-        dispatch(isAuthTC())
-    }, [])
 
 
 
@@ -40,6 +37,7 @@ const Profile = () => {
                     <div className={s.header}></div>
                 </div>
             </div>
+            <a href={'/packs'}>PacksList</a>
         </div>
     );
 };

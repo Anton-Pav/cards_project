@@ -1,8 +1,7 @@
-import React, {useState} from 'react';
+import React from 'react';
 import s from './RecoveryPassword.module.css';
 import {useFormik} from "formik";
 import {LoginPostType} from "../../../dal/loginAPI";
-import {loginTC} from "../../../bll/loginReducer";
 import {useDispatch, useSelector} from "react-redux";
 import {forgotTC} from "../../../bll/recoveryPasswordReducer";
 import {AppRootType} from "../../../bll/store";

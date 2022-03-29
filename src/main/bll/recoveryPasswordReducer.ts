@@ -1,4 +1,4 @@
-import {authForgotAPI, ForgotPostType} from "../dal/loginAPI";
+import {authForgotAPI} from "../dal/loginAPI";
 import {Dispatch} from "redux";
 
 

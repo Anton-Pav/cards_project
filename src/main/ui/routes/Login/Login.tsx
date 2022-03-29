@@ -10,7 +10,6 @@ import {Navigate, useNavigate} from "react-router-dom";
 const Login = () => {
 
     const dispatch = useDispatch();
-
     const error = useSelector<AppRootType, string | null>(state => state.app.error)
     const isLoggedIn = useSelector<AppRootType, boolean>(state => state.login.isLoggedIn)
     console.log(error)
@@ -36,15 +35,12 @@ const Login = () => {
             return errors;
         },
         onSubmit: values => {
-            console.log(values)
             dispatch(loginTC(values))
         },
     })
 
-    // const login = () => {
-    //     dispatch(loginTC())
-    // }
-    const navigate = useNavigate()
+    console.log(isLoggedIn)
+
     if (isLoggedIn) {
         return  <Navigate to={'/profile'}/>
     }
@@ -77,7 +73,7 @@ const Login = () => {
             {error && <div>{error}</div>}
             <div className={s.block3}>
                 <span>Don't have an account?</span>
-                <a className={s.signUp} href={'#'}>Sign Up</a>
+                <a className={s.signUp} href={'/register'}>Sign Up</a>
             </div>
         </div>
     );
