@@ -1,57 +1,36 @@
-.cardsBlock {
-    position: relative;
-    width: 1008px;
-    height: 80vh;
-    margin: 50px auto;
-    left: 0;
-    right: 0;
-    background: #fefeff;
-    border-radius: 8px;
-
-    display: flex;
-    flex-direction: column;
-}
-
-.title {
-    margin: 24px 24px;
-    cursor: pointer;
-    font-size: 24px;
-    /*display: flex;*/
-    /*flex-direction: column;*/
-    width: 200px;
-}
-
-.input{
-    margin-left: 24px;
-    height: 30px;
-    width: 690px;
-    background: #ECECF9;
-    opacity: 0.5;
-    border: 1px solid #635D80;
-    box-sizing: border-box;
-    border-radius: 2px;
-}
-.addCard {
-    position: absolute;
-    right: 24px;
-    height: 30px;
-    width: 70px;
-    /*margin: 0px auto;*/
-    border: 0;
-    color: white;
-    background: rgba(35, 37, 94, 0.4);
-}
-.cardsBlock .table {
-    margin: 20px 24px;
+.table {
+    margin-top: 20px;
 }
 .tableBody {
-    width: 100%;
-    height: 450px;
+    height: 50vh;
     overflow-x: auto;
     margin-top: 0px;
 }
+
+.delete {
+    background: rgb(255, 125, 83);
+    border: none;
+    height: 20px;
+    color: white;
+}
+
+.edit {
+    background: rgba(35, 37, 94, 0.5);
+    margin: 0 5px;
+    border: none;
+    height: 20px;
+    color: white;
+}
+
+.learn {
+    background: rgba(35, 37, 94, 0.9);
+    border: none;
+    height: 20px;
+    color: white;
+}
+
 .table table {
-    width: 100%;
+    width:100%;
     table-layout: fixed;
     border: none;
 }

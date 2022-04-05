@@ -2,6 +2,7 @@ import {GetPacksResponseType, packsAPI} from "../dal/cardsAPI";
 import {Dispatch} from "redux";
 import {ThunkDispatch} from "redux-thunk";
 import {AppRootType} from "./store";
+import packs from "../ui/routes/Packs/Packs";
 
 type initialStateType = {
     packs: GetPacksResponseType

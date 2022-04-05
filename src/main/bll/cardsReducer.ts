@@ -44,8 +44,8 @@ export const getCardsTC = (id: string) => (dispatch: Dispatch) => {
         dispatch(getCardsAC(res.data.cards))
     })
 }
-export const addCardsTC = (id: string) => (dispatch: ThunkDispatch<any, any, any>) => {
-    return cardsAPI.addCard(id).then(res => {
+export const addCardsTC = (id: string, question: string, answer: string) => (dispatch: ThunkDispatch<any, any, any>) => {
+    return cardsAPI.addCard(id, question, answer).then(res => {
         dispatch(getCardsTC(id))
     })
 }

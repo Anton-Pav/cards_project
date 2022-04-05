@@ -18,7 +18,7 @@ export const registerAPI = {
 }
 export const authMeAPI = {
     me() {
-        return instance.post<AxiosResponse<LoginResponseType>>('/me')
+        return instance.post('/me')
     },
     logOut() {
         return instance.delete('/me')

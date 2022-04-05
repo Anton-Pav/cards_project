@@ -1,11 +1,11 @@
 .packsBlock {
-    position: absolute;
+    position: relative;
     width: 1008px;
-    height: 636px;
+    height: 80vh;
     margin: 50px auto;
     left: 0;
     right: 0;
-    background: #FEFEFF;
+    background: #fefeff;
     border-radius: 8px;
 
     display: flex;
@@ -13,14 +13,58 @@
 }
 
 .packsMain {
+    display: flex;
+    flex-direction: column;
     width: 20%;
     background: #ECECF9;
+    border-radius: 5px 0 0 5px;
 }
+
+.packsMain span {
+    margin: 20px auto;
+}
+
+.packsMain button {
+    width: 70px;
+    margin: 0px auto;
+    border: 0;
+    height: 30px;
+}
+
 .packs {
 
     width: 80%;
     padding: 20px;
 }
-.addPack {
 
+.packs input {
+    height: 30px;
+    width: 690px;
+    background: #ECECF9;
+    opacity: 0.5;
+    border: 1px solid #635D80;
+    box-sizing: border-box;
+    border-radius: 2px;
 }
+
+.packsMain .addPack {
+    position: absolute;
+    top: 30px;
+    right: 20px;
+    width: 100px;
+    display: inline-block;
+    color: white;
+    font-weight: 700;
+    text-decoration: none;
+    user-select: none;
+    outline: none;
+    border: 2px solid;
+    border-radius: 1px;
+    transition: 0.2s;
+    background-color: rgba(35, 37, 94, 0.25);
+}
+
+.addPack:hover { background: rgba(35, 37, 94, 0.5);}
+.addPack:active { background: white; }
+
+

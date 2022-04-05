@@ -1,7 +1,7 @@
 
 
 type InitialStateType = {
-    error: string | null
+    error: string | null,
 }
 
 const initialState: InitialStateType = {

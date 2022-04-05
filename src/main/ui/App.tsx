@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import './App.css';
-import {Navigate, Route, Routes, useLocation} from "react-router-dom";
+import {Link, Navigate, Route, Routes, useLocation} from "react-router-dom";
 import Profile from "./routes/Profile/Profile";
 import Login from "./routes/Login/Login";
 import Register from "./routes/Register/Register";
@@ -10,12 +10,11 @@ import PageNotFound from "./routes/404/PageNotFound";
 import EditProfile from "./routes/Profile/EditProfile/EditProfile";
 import Packs from "./routes/Packs/Packs";
 import Cards from "./routes/Cards/Cards";
-import {useDispatch, useSelector} from "react-redux";
-import {AppRootType} from "../bll/store";
+import {useDispatch} from "react-redux";
 import {isAuthTC} from "../bll/loginReducer";
+import Header from "./Header/Header";
 
 const App = () => {
-
 
 
     const dispatch = useDispatch()
@@ -26,13 +25,8 @@ const App = () => {
 
     return (
         <div className="App">
-            <div style={{
-                width: '1000px',
-                height: '60px',
-                backgroundColor: 'black'
-            }}>
+            <Header/>
 
-            </div>
             <>
                 <Routes>
                     <Route path='profile' element={<Profile/>}/>

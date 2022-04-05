@@ -7,7 +7,7 @@ export const instance = axios.create({
 
 
 export const packsAPI = {
-    getMyPacks(page: number = 1, pageCount: number = 1000) {
+    getMyPacks(page: number = 1, pageCount: number = 10) {
         return instance.get('/pack', {
             params: {
                 page,
@@ -40,8 +40,8 @@ export const cardsAPI = {
     getCards(cardsPack_id: string) {
         return instance.get('/card', {params: {cardsPack_id, pageCount: 1000}})
     },
-    addCard(cardsPack_id: string) {
-        return instance.post('/card', {card: {cardsPack_id}})
+    addCard(cardsPack_id: string, question: string, answer: string) {
+        return instance.post('/card', {card: {cardsPack_id, question, answer}})
     },
     deleteCard(id: string) {
         return instance.delete('/card',{params: {id}})

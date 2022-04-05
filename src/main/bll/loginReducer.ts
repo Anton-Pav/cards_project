@@ -5,12 +5,14 @@ import {setAppErrorAC} from "./appReducer";
 
 type InitialStateType = {
     name: null | string,
+    id: null | string,
     avatar?: null | string,
-    isLoggedIn: boolean
+    isLoggedIn: boolean,
 }
 
 const initialState: InitialStateType = {
     name: null,
+    id: null,
     avatar: null,
     isLoggedIn: false
 }
@@ -22,7 +24,6 @@ export const loginReducer = (store = initialState, action: ActionType): InitialS
             return {...store, ...action.payload}
         }
         case "login/SET-IS-LOGGED-IN": {
-
             return {...store, isLoggedIn: action.value}
         }
         case "USER-UPDATE": {
@@ -46,12 +47,13 @@ export const setIsLoggedInAC = (value: boolean) =>
     ({type: 'login/SET-IS-LOGGED-IN', value} as const)
 
 
-export const loginAC = (name: string, avatar: string | undefined) => {
+export const loginAC = (name: string, avatar: string | undefined, id: string) => {
     return {
         type: 'SET-LOGIN',
         payload: {
             name,
             avatar,
+            id
         }
     } as const
 }
@@ -65,7 +67,7 @@ const updateUserAC = (name: string, avatar: string | undefined) => ({
 
 export const loginTC = (data: LoginPostType) => (dispatch: Dispatch) => {
     loginAPI.login(data).then(res => {
-            dispatch(loginAC(res.data.name, res.data.avatar))
+            dispatch(loginAC(res.data.name, res.data.avatar, res.data._id))
             dispatch(setIsLoggedInAC(true))
         }
     )
@@ -78,11 +80,13 @@ export const loginTC = (data: LoginPostType) => (dispatch: Dispatch) => {
 export const isAuthTC = () => (dispatch: Dispatch) => {
     authMeAPI.me().then(res => {
         dispatch(setIsLoggedInAC(true))
+
+        dispatch(loginAC(res.data.name, res.data.avatar, res.data._id))
     })
         .catch((e) => {
             const error = e.response ? e.response.data.error : (e.message + ', more details in the console')
+
             dispatch(setAppErrorAC(error))
-            console.log('Error: ', {...e})
         })
 }
 

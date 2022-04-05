@@ -1,29 +1,43 @@
 .profileBlock {
     position: relative;
     width: 1008px;
-    height: 636px;
-    left: 136px;
-    top: 84px;
-
+    height: 80vh;
+    margin: 50px auto;
     background: #FEFEFF;
-    border-radius: 8px;
+    border-radius: 5px;
+    display: flex;
 }
 
 .profileInfo {
-        position: absolute;
-        width: 243px;
-        height: 636px;
-
-
-        background: #ececf9;
+    position: absolute;
+    width: 243px;
+    height: 100%;
+    background: #ececf9;
+    border-radius: 5px 0 0 5px;
 }
 
 .profile {
     position: absolute;
     width: 243px;
     height: 216px;
-
     background: #D9D9F1;
+    border-radius: 5px 0 0 0;
+}
+
+.profile img {
+    position: absolute;
+    width: 160px;
+    right: 0;
+    left: 0;
+    margin: 10px auto;
+}
+
+.profile button {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 180px auto;
+    width: 90px;
 }
 
 .numCards {
@@ -33,9 +47,8 @@
 .packList {
     position: absolute;
     width: 765px;
-    height: 636px;
+    height: 100%;
     right: 0;
-    background: #FEFEFF;
     border-radius: 8px;
 }
 

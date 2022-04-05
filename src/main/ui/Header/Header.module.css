@@ -1,0 +1,22 @@
+.headerBlock {
+    width: 100%;
+    height: 60px;
+    background-color: whitesmoke;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.link {
+    width: 70px;
+    height: 100%;
+    display: flex;
+    margin: 0 5px;
+}
+
+.link a{
+    color: #23255e;
+    z-index: 1;
+    margin-top: 18px;
+    text-decoration: none;
+}

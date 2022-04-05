@@ -13,31 +13,33 @@ const Profile = () => {
     const dispatch = useDispatch()
 
 
-
     if (!isLoggedIn) {
         return <Navigate to={'/login'}/>
     }
 
     return (
         <div className={s.profileBlock}>
-            <button onClick={() => dispatch(logOutTC())}>Log Out</button>
             <div className={s.profileInfo}>
                 <div className={s.profile}>
-                    <button className={s.editProfile} onClick={()=> navigate('/edit')}
-                    >Edit Profile</button>
+                    <img  src={'https://yt3.ggpht.com/a/AATXAJyw_o7bOgBFROmFCnapbg5WrDKHpBDVOFGJ_dU6Ig=s900-c-k-c0xffffffff-no-rj-mo'} alt={'photo'}/>
+                    <button className={s.editProfile} onClick={() => navigate('/edit')}
+                    >Edit Profile
+                    </button>
                 </div>
                 <div className={s.numCards}>
-
+                    <button onClick={() => dispatch(logOutTC())}>Log Out</button>
                 </div>
+
             </div>
             <div className={s.packList}>
                 <h2>My packs list</h2>
-                <input/>
-                <div className={s.cards}>
-                    <div className={s.header}></div>
-                </div>
+                <input placeholder={'  Search...'}/>
+                {/*<div className={s.cards}>*/}
+                {/*    /!*<div className={s.header}>*!/*/}
+
+                {/*    /!*</div>*!/*/}
+                {/*</div>*/}
             </div>
-            <a href={'/packs'}>PacksList</a>
         </div>
     );
 };

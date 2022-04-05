@@ -1,0 +1,43 @@
+.deletePack {
+    position: absolute;
+    width: 395px;
+    height: 221px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    top: 283px;
+    background: #F9F9FE;
+    border-radius: 2px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.title {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 24px;
+}
+.title button {
+    border: none;
+    background: none;
+}
+
+.title button:hover {
+    color: gray;
+}
+
+p {
+    margin: 0 24px;
+}
+
+.deletePackBtn {
+    width: 100px;
+    height: 30px;
+    color: white;
+    background-color: rgba(35, 37, 94, 0.4);
+    border-radius: 30px;
+    border: none;
+    margin: 0 auto;
+}
