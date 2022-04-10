@@ -1,0 +1,68 @@
+@import "src/main/ui/App";
+
+.packsBlock {
+  @extend %profileBlock;
+
+  .packsMain {
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+    background: #ECECF9;
+    border-radius: 5px 0 0 5px;
+
+    span {
+      margin: 20px auto;
+    }
+
+    button {
+      width: 70px;
+      margin: 0px auto;
+      border: 0;
+      height: 30px;
+    }
+
+    .addPack {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 100px;
+      display: inline-block;
+      color: white;
+      font-weight: 700;
+      text-decoration: none;
+      user-select: none;
+      outline: none;
+      border: 2px solid;
+      border-radius: 1px;
+      transition: 0.2s;
+      background-color: rgba(35, 37, 94, 0.25);
+
+      &:hover {
+        background: rgba(35, 37, 94, 0.5);
+      }
+
+      &:active {
+        background: white;
+      }
+
+    }
+  }
+
+  .packs {
+    width: 80%;
+    padding: 20px;
+
+    h2 {
+      margin-top: 0;
+      color: #23255e;
+    }
+  }
+
+  .search {
+    @extend %searchInput
+  }
+}
+
+
+
+

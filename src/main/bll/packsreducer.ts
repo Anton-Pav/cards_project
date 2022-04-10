@@ -8,12 +8,14 @@ type initialStateType = {
     packs: GetPacksResponseType
     isLoading: boolean
     myPacks: boolean
+    currentPage: number
 }
 
 const initialState:initialStateType = {
     packs: {} as GetPacksResponseType,
     isLoading: false,
     myPacks: false,
+    currentPage: 1
 }
 
 export const packsReducer = (state = initialState, action: ActionType):initialStateType   => {
@@ -24,14 +26,18 @@ export const packsReducer = (state = initialState, action: ActionType):initialSt
         case 'SHOW-MY-PACKS': {
             return {...state, myPacks: action.payload.value}
         }
+        case 'CHANGE-CURRENT-PAGE': {
+            return {...state, currentPage: action.payload.value}
+        }
         default:
             return state
     }
 }
 
-type ActionType = getPacksACType | showMyPacksACType
+type ActionType = getPacksACType | showMyPacksACType | changeCurrentPageType
 type getPacksACType = ReturnType<typeof getPacksAC>
 type showMyPacksACType = ReturnType<typeof showMyPacksAC>
+type changeCurrentPageType = ReturnType<typeof changeCurrentPage>
 
 export const showMyPacksAC = (value:boolean) => {
     return {
@@ -40,20 +46,24 @@ export const showMyPacksAC = (value:boolean) => {
     } as const
 }
 
+export const changeCurrentPage = (value: number) => ({type: 'CHANGE-CURRENT-PAGE', payload: {value}} as const)
+
 const getPacksAC = (data: GetPacksResponseType) => (
     {type: 'GET-PACKS', payload: {
     data
     }} as const)
 
 
-export const getMyPacksTC = () => (dispatch: Dispatch) => {
-    packsAPI.getMyPacks().then(res => {
+export const getMyPacksTC = () => (dispatch: Dispatch, getState: ()=> AppRootType) => {
+    const state = getState()
+    packsAPI.getMyPacks(state.packs.currentPage, 20).then(res => {
         dispatch(getPacksAC(res.data))
         dispatch(showMyPacksAC(true))
     })
 }
-export const getAllPacksTC = (debounce: string) => (dispatch: Dispatch) => {
-    packsAPI.getAllPacks(1, 1000, debounce).then(res => {
+export const getAllPacksTC = (debounce: string) => (dispatch: Dispatch, getState: ()=> AppRootType) => {
+    const state = getState()
+    packsAPI.getAllPacks(state.packs.currentPage, 20, debounce).then(res => {
         dispatch(getPacksAC(res.data))
         dispatch(showMyPacksAC(false))
     })

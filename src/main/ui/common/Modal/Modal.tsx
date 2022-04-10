@@ -1,5 +1,5 @@
 import React, {ReactChild, ReactChildren} from 'react';
-import s from './Modal.module.css';
+import s from './Modal.module.scss';
 
 
 interface AuxProps {

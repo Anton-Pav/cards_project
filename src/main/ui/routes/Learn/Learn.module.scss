@@ -1,0 +1,67 @@
+@import "./src/main/ui/App";
+
+.learnBlock {
+    position: absolute;
+    width: 395px;
+    height: 221px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    top: 283px;
+    background: #F9F9FE;
+    border-radius: 2px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    button {
+        margin: 0 20px;
+    }
+    .title {
+        font-size: 22px;
+    }
+    .cancelBtn {
+        @extend %button;
+        background-color: $buttonColorLight;
+    }
+}
+
+.answerList {
+    position: absolute;
+    width: 395px;
+    height: 421px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    top: 283px;
+    background: #F9F9FE;
+    border-radius: 2px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    .title {
+        font-size: 22px;
+    }
+    .radio {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        height: 200px;
+        margin-left: -100px;
+        input {
+            margin-right: 10px;
+            background-color: gold;
+            &:focus {
+                background-color: #635D80;
+            }
+        }
+    }
+}
+
+.showBtn {
+    @extend %button;
+    background-color: $buttonColorDark;
+}

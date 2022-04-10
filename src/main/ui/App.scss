@@ -1,0 +1,125 @@
+
+
+.App {
+    background-color: rgba(35, 37, 94, 0.7);
+    height: 100vh;
+}
+
+
+$buttonColorLight : rgba(35, 37, 94, 0.4);
+
+$buttonColorDark : rgba(35, 37, 94, 0.8);
+
+%button {
+    width: 100px;
+    height: 30px;
+    color: white;
+    border-radius: 30px;
+    border: none;
+    margin: 0 auto;
+}
+
+%searchInput {
+    height: 30px;
+    width: 773px;
+    background: #ECECF9;
+    opacity: 0.5;
+    border: 1px solid #635D80;
+    box-sizing: border-box;
+    border-radius: 2px;
+}
+
+%profileBlock {
+    position: relative;
+    width: 1008px;
+    height: 80vh;
+    margin: 50px auto;
+    background: #FEFEFF;
+    border-radius: 5px;
+    display: flex;
+}
+
+%formBlock {
+    margin: 100px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+    width: 320px;
+    height: 400px;
+
+    background: #F9F9FE;
+    border-radius: 5px;
+}
+
+%formTitle {
+    font-size: 22px;
+    color: #23255e;
+}
+
+%input {
+    font-family: inherit;
+    border: 0;
+    width: 270px;
+    border-bottom: 2px solid gray;
+    outline: 0;
+    color: white;
+    padding: 7px 0;
+    background: transparent;
+    transition: border-color 0.2s;
+    margin: 0 auto;
+}
+
+
+%loginBtn {
+    width: 70px;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    font-weight: 300;
+    font-size: 14px;
+    border: #23255e 1px solid;
+    color: white;
+    background-color: $buttonColorDark;
+    padding: 3px 5px;
+    transition: .5s;
+    border-radius: 0px;
+
+    &:hover {
+        top: 5px;
+        transition: .5s;
+        color: white;
+        border: #21268F 1px solid;
+        border-radius: 10px;
+    }
+
+    &:active {
+        color: #000;
+        border: #1A1A1A 1px solid;
+        transition: .07s;
+        background-color: #FFF;
+    }
+}
+
+%editBtn {
+    background: rgba(35, 37, 94, 0.5);
+    margin: 0 5px;
+    border: none;
+    height: 20px;
+    color: white;
+}
+
+%deleteBtn {
+    background: rgb(255, 125, 83);
+    border: none;
+    height: 20px;
+    color: white;
+}
+
+%learnBtn {
+    background: rgba(35, 37, 94, 0.9);
+    border: none;
+    height: 20px;
+    color: white;
+}
+

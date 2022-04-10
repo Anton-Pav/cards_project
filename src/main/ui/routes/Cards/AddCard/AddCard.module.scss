@@ -1,0 +1,56 @@
+.addCardBlock {
+  position: absolute;
+  width: 295px;
+  height: 321px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  top: 283px;
+  background: #F9F9FE;
+  border-radius: 2px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+
+  .title {
+    margin: 0 auto;
+  }
+
+  .cardInput {
+    display: flex;
+    flex-direction: column;
+    font-size: 11px;
+
+    span {
+      margin-left: 35px;
+    }
+
+    input {
+      width: 80%;
+      margin: 5px auto;
+      border: none;
+      border-bottom: #635D80 solid 1px;
+      background: none;
+
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+
+  .cardBtns {
+    display: flex;
+    justify-content: center;
+
+    button {
+      margin: 0 20px;
+      width: 100px;
+      height: 30px;
+      color: white;
+      background-color: rgba(35, 37, 94, 0.4);
+      border-radius: 30px;
+      border: none;
+    }
+  }
+}

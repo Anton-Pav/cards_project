@@ -16,7 +16,6 @@ export type CardsType = {
     created: string
     updated: string
     _id: string
-
 }
 
 const initialState: initialStateType = {
@@ -54,8 +53,9 @@ export const deleteCardTC = (id: string, cardsPack_id: string) => (dispatch: Thu
         dispatch(getCardsTC(cardsPack_id))
     })
 }
-export const updateCardTC = (id: string, question: string, cardsPack_id: string) => (dispatch: ThunkDispatch<any, any, any>) => {
-    return cardsAPI.updateCard(id, question).then(res => {
+export const updateCardTC = (id: string, question: string, answer: string, cardsPack_id: string) => (dispatch: ThunkDispatch<any, any, any>) => {
+    return cardsAPI.updateCard(id, question, answer).then(res => {
         dispatch(getCardsTC(cardsPack_id))
     })
 }
+

@@ -1,0 +1,65 @@
+@import "src/main/ui/App";
+.table {
+  margin: 20px 24px;
+
+  table {
+    width: 100%;
+    table-layout: fixed;
+    border: none;
+  }
+
+  thead th {
+    font-weight: bold;
+    text-align: center;
+    color: white;
+    border: none;
+    padding: 5px 5px;
+    background: rgba(35, 37, 94, 0.7);
+    font-size: 14px;
+  }
+
+  .tableBody {
+    width: 100%;
+    height: 380px;
+    overflow-x: auto;
+    margin-top: 0px;
+
+    tbody td {
+      text-align: center;
+      padding: 5px 5px;
+      font-size: 14px;
+      vertical-align: top;
+      .edit {
+        @extend %editBtn
+      }
+
+      .delete {
+        @extend %deleteBtn
+      }
+    }
+
+    tbody tr:nth-child(even) {
+      background: rgba(35, 37, 94, 0.4);
+    }
+  }
+
+  .tfoot {
+    height: 25px;
+    background-color: #ddd;
+  }
+}
+
+
+
+/* Стили для скролла */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+::-webkit-scrollbar-thumb {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}

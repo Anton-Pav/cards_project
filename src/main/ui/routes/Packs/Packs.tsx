@@ -1,80 +1,70 @@
 import React, {useEffect, useState} from 'react';
-import s from './Packs.module.css'
+import s from './Packs.module.scss'
 import {useDispatch, useSelector} from "react-redux";
 import {getAllPacksTC, getMyPacksTC} from "../../../bll/packsreducer";
 import {AppRootType} from "../../../bll/store";
-import {GetPacksResponseType} from "../../../dal/cardsAPI";
-import {Navigate, useNavigate} from "react-router-dom";
+import {Navigate} from "react-router-dom";
 import {useDebounce} from "use-debounce";
-import Table from "../../common/Table/Table";
+import Table from "../../common/Table/TablePack/TablePack";
 import Loader from "../../common/Loader/Loader";
-import AddPack from "./AddPack/AddPack";
-import DeletePack from "./DeletePack/DeletePack";
+import AddCardPack from "./AddPack/AddCardPack";
+import {LoadingType} from "../../../bll/loginReducer";
 
 const Packs = () => {
 
     const dispatch = useDispatch()
-    const navigate = useNavigate()
-    const packs = useSelector<AppRootType, GetPacksResponseType>(state => state.packs.packs)
+
     const myPacks = useSelector<AppRootType, boolean>(state => state.packs.myPacks)
     const isLoading = useSelector<AppRootType, boolean>(state => state.packs.isLoading)
-    const isLoggedIn = useSelector<AppRootType, boolean>(state => state.login.isLoggedIn)
+    const isLoggedIn = useSelector<AppRootType, LoadingType>(state => state.login.isLoggedIn)
+
     const [value, setValue] = useState('')
     const debounce = useDebounce(value, 500)
-    const [modalDelete, setModalDelete] = useState('')
 
+    const [modalAddPack, setModalAddPack] = useState(false)
+
+    const currentPage = useSelector<AppRootType, number>(state => state.packs.currentPage)
+    const styleBtnMyAll = {backgroundColor: "rgba(35, 37, 94, 0.4)"}
 
     useEffect(() => {
-        if (isLoggedIn) {
+        if (isLoggedIn === 'success') {
             if (myPacks) {
                 dispatch(getMyPacksTC())
             } else {
                 dispatch(getAllPacksTC(debounce[0]))
             }
         }
-    }, [isLoggedIn, debounce[0]]);
+    }, [isLoggedIn, debounce[0], currentPage] );
 
 
-    if (!isLoggedIn) {
-        return <Navigate to={'/login'}/>
-    }
+    // if (!isLoggedIn) {
+    //     return <Navigate to={'/login'}/>
+    // }
 
     return <div className={s.packsBlock}>
-
-        {modalDelete === 'add' && <AddPack setModal={setModalDelete}/>}
-        {modalDelete && modalDelete !== 'add' && <DeletePack modalDelete={modalDelete} setModalDelete={setModalDelete}/>}
+        {modalAddPack && <AddCardPack setModal={setModalAddPack}/>}
         <div className={s.packsMain}>
-            <button className={s.addPack} onClick={() => {setModalDelete('add')}}>
+            <button className={s.addPack} onClick={() => {
+                setModalAddPack(true)
+            }}>
                 Add pack
             </button>
             <span>Show packs cards</span>
-            <button className={s.myBtn} onClick={() => dispatch(getMyPacksTC())}
-                    style={myPacks ? {backgroundColor: "rgba(35, 37, 94, 0.25)"} : {}}>
+            <button className={s.myBtn} onClick={() => dispatch(getMyPacksTC())} style={myPacks ? styleBtnMyAll : {}}>
                 My
             </button>
             <button className={s.allBtn} onClick={() => dispatch(getAllPacksTC(''))}
-                    style={!myPacks ? {backgroundColor: "rgba(35, 37, 94, 0.25)"} : {}}>
+                    style={!myPacks ? styleBtnMyAll : {}}>
                 All
             </button>
-
         </div>
         <div className={s.packs}>
             <h2>Pack List</h2>
             <input type={'text'} value={value} onChange={e => setValue(e.currentTarget.value)}
-                   placeholder={'Search...'}/>
-
-            {!isLoading ? <Loader/> : <Table setModalDelete={setModalDelete}/>}
-            {/*{packs.cardPacks.map(m => <div>*/}
-            {/*    {m.name}*/}
-            {/*    <button onClick={() => {dispatch(deletePackTC(m._id))}}>Delete</button>*/}
-            {/*    <button className={s.edit} onClick={() => {dispatch(updatePackTC(m._id, value))}}>Edit</button>*/}
-            {/*    <button className={s.learn} onClick={()=> {*/}
-            {/*        return navigate(`cards/${m._id}`, {state: {packsName: m.name}})}}>Learn</button>*/}
-            {/*</div>)}*/}
+                   placeholder={'Search...'} className={s.search}/>
+            {!isLoading ? <Loader/> : <Table />}
         </div>
     </div>
-
-
 };
 
 export default Packs;

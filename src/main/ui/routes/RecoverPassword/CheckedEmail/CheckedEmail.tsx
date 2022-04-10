@@ -1,5 +1,5 @@
 import React from 'react';
-import s from './CheckedEmail.module.css';
+import s from './CheckedEmail.module.scss';
 import emailImg from '../../../assets/email.svg'
 const CheckedEmail = () => {
     return (

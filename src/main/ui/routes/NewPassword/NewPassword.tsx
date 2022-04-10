@@ -1,7 +1,7 @@
 import React from 'react';
-import s from './NewPassword.module.css';
+import s from './NewPassword.module.scss';
 import {useFormik} from "formik";
-import {LoginPostType, NewPasswordType} from "../../../dal/loginAPI";
+import {LoginPostType} from "../../../dal/loginAPI";
 import {Navigate, useParams} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {newPasswordTC} from "../../../bll/newPasswordReducer";
@@ -9,9 +9,12 @@ import {AppRootType} from "../../../bll/store";
 
 
 const NewPassword = () => {
+
     const params = useParams()
     const dispatch = useDispatch()
+
     const isValid = useSelector<AppRootType, boolean>(state => state.newPassword.isValid)
+
     const formik = useFormik({
         initialValues: {
             password: ''
@@ -27,10 +30,10 @@ const NewPassword = () => {
         },
         onSubmit: values => {
             console.log(values)
-            dispatch(newPasswordTC({password:values.password, resetPasswordToken: params.token}))
+            dispatch(newPasswordTC({password: values.password, resetPasswordToken: params.token}))
         },
-
     })
+
     if (isValid) {
         return <Navigate to={'/login'}/>
     }

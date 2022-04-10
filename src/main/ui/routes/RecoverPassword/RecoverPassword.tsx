@@ -1,5 +1,5 @@
 import React from 'react';
-import s from './RecoveryPassword.module.css';
+import s from './RecoveryPassword.module.scss';
 import {useFormik} from "formik";
 import {LoginPostType} from "../../../dal/loginAPI";
 import {useDispatch, useSelector} from "react-redux";
@@ -9,9 +9,10 @@ import CheckedEmail from "./CheckedEmail/CheckedEmail";
 
 const RecoverPassword = () => {
 
-    const error = useSelector<AppRootType, string| null>(state => state.recoveryPassword.error)
+    const dispatch = useDispatch()
+
+    const error = useSelector<AppRootType, string | null>(state => state.recoveryPassword.error)
     const isValideEmail = useSelector<AppRootType, boolean>(state => state.recoveryPassword.isValidEmail)
-     const dispatch = useDispatch()
 
     const formik = useFormik({
         initialValues: {
@@ -27,32 +28,37 @@ const RecoverPassword = () => {
             return errors;
         },
         onSubmit: values => {
-            console.log(values)
             dispatch(forgotTC(values.email))
         },
     })
 
     return (
         <div className={s.recPasswordBlock}>
-            {   isValideEmail? <CheckedEmail/> :
-                <div>
+            {isValideEmail ?
+                <CheckedEmail/>
+                :
+                <div className={s.forgotPassword}>
+                    <h2 className={s.forgotPasswordText}>Forgot your password?</h2>
                     <form onSubmit={formik.handleSubmit}>
-                        <h2 className={s.forgotPasswordText}>Forgot your password?</h2>
-                        <input placeholder={'Email'}
-                               id="email"
-                               name="email"
-                               type="email"
-                               onChange={formik.handleChange}
-                               value={formik.values.email}/>
-                        {formik.touched.email && formik.errors.email && <div style = {{color: 'red'}}>{formik.errors.email}</div>}
-                        <p>Enter your email address and we will send you further instructions</p>
+                       <div className={s.input}>
+                           <input placeholder={'Email'}
+                                  id="email"
+                                  name="email"
+                                  type="email"
+                                  onChange={formik.handleChange}
+                                  value={formik.values.email}/>
+                           {formik.touched.email && formik.errors.email &&
+                               <div style={{color: 'red'}}>{formik.errors.email}</div>}
+                           <p>Enter your email address and we will send you further instructions</p>
+                       </div>
                         <button className={s.btnSend} type={'submit'}> Send Instruction</button>
                     </form>
-                    <p >Did you remember your password?</p>
-                    <a href={'/login'}>Try logging in</a>
+                    <div className={s.loginIn}>
+                        <p>Did you remember your password?</p>
+                        <a href={'/login'}>Try logging in</a>
+                    </div>
                 </div>
             }
-
         </div>
     );
 };

@@ -1,0 +1,53 @@
+@import "./src/main/ui/App";
+
+.registerBlock {
+  @extend %formBlock;
+
+  .block1 {
+    margin: 20px auto;
+    h2 {
+      @extend %formTitle;
+    }
+  }
+  .block2 {
+    height: 300px;
+    position: relative;
+    .form {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      input {
+        @extend %input
+      }
+      .email {
+        position: absolute;
+        margin-top: 30px;
+        width: 80%;
+      }
+      .password {
+        position: absolute;
+        margin-top: 80px;
+        width: 80%;
+      }
+      .buttons {
+        margin-top: 20px;
+        display: flex;
+        justify-content: space-evenly;
+        width: 80%;
+        margin-bottom: 80px;
+        .buttonRegister {
+          @extend %button;
+          margin-top: 150px;
+          background-color: $buttonColorDark;
+        }
+        .buttonCancel {
+          margin-top: 150px;
+          @extend %button;
+          background-color: $buttonColorLight;
+        }
+      }
+
+    }
+  }
+}

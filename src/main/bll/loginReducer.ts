@@ -3,22 +3,23 @@ import {Dispatch} from "redux";
 import {setAppErrorAC} from "./appReducer";
 
 
+export type LoadingType = 'success'| 'loading' | 'failed'| 'idle'
+
 type InitialStateType = {
     name: null | string,
     id: null | string,
     avatar?: null | string,
-    isLoggedIn: boolean,
+    isLoggedIn: LoadingType
 }
 
 const initialState: InitialStateType = {
     name: null,
     id: null,
     avatar: null,
-    isLoggedIn: false
+    isLoggedIn: 'idle'
 }
 
 export const loginReducer = (store = initialState, action: ActionType): InitialStateType => {
-
     switch (action.type) {
         case "SET-LOGIN": {
             return {...store, ...action.payload}
@@ -43,7 +44,7 @@ export const loginReducer = (store = initialState, action: ActionType): InitialS
     }
 }
 
-export const setIsLoggedInAC = (value: boolean) =>
+export const setIsLoggedInAC = (value: LoadingType) =>
     ({type: 'login/SET-IS-LOGGED-IN', value} as const)
 
 
@@ -66,33 +67,35 @@ const updateUserAC = (name: string, avatar: string | undefined) => ({
 } as const)
 
 export const loginTC = (data: LoginPostType) => (dispatch: Dispatch) => {
+    dispatch(setIsLoggedInAC('loading'))
     loginAPI.login(data).then(res => {
             dispatch(loginAC(res.data.name, res.data.avatar, res.data._id))
-            dispatch(setIsLoggedInAC(true))
+            dispatch(setIsLoggedInAC('success'))
         }
     )
         .catch((e) => {
             const error = e.response ? e.response.data.error : (e.message + ', more details in the console')
+            dispatch(setIsLoggedInAC('failed'))
             dispatch(setAppErrorAC(error))
             console.log('Error: ', {...e})
         });
 }
 export const isAuthTC = () => (dispatch: Dispatch) => {
+    dispatch(setIsLoggedInAC('loading'))
     authMeAPI.me().then(res => {
-        dispatch(setIsLoggedInAC(true))
-
+        dispatch(setIsLoggedInAC('success'))
         dispatch(loginAC(res.data.name, res.data.avatar, res.data._id))
     })
         .catch((e) => {
+            dispatch(setIsLoggedInAC('failed'))
             const error = e.response ? e.response.data.error : (e.message + ', more details in the console')
-
             dispatch(setAppErrorAC(error))
         })
 }
 
 export const logOutTC = () => (dispatch: Dispatch) => {
     authMeAPI.logOut().then(res => {
-        dispatch(setIsLoggedInAC(false))
+        dispatch(setIsLoggedInAC('failed'))
     })
 }
 

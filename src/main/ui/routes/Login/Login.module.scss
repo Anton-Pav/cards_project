@@ -1,0 +1,75 @@
+@import "src/main/ui/App";
+
+.loginBlock {
+  @extend %formBlock;
+
+  .block1 {
+    margin: 10px auto;
+
+    h2 {
+      @extend %formTitle;
+    }
+  }
+
+  .block2 {
+    height: 150px;
+
+    .form {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+
+      input {
+        @extend %input
+      }
+
+      .email {
+        margin-top: -30px;
+      }
+
+      .password {
+        display: block;
+        margin-top: -25px;
+      }
+    }
+
+    .btn {
+      margin-top: -35px;
+
+      .forgotPassword {
+        margin-left: 40px;
+      }
+
+      .buttonLogin {
+       @extend %loginBtn;
+       margin: 20px 25px;
+      }
+    }
+  }
+
+  .block3 {
+    height: 70px;
+    display: flex;
+    flex-direction: column;
+    margin-top: -20px;
+
+    span {
+      margin: 0 auto;
+    }
+
+    .signUp {
+      display: inline-block;
+      margin: 10px auto;
+
+      font-style: normal;
+      font-weight: 600;
+      font-size: 16px;
+      line-height: 24px;
+      text-align: center;
+
+      color: #21268F;
+    }
+  }
+}

@@ -1,0 +1,10 @@
+
+.star:before {
+    font-size: 20px;
+    content: '★';
+    color: gray;
+}
+
+.active:before {
+    color: gold;
+}
